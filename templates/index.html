@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Estimator</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/unnamed.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='test1.css') }}"> <link rel="stylesheet" href="/static/test1.css">
+    <script src="https://kit.fontawesome.com/f02526f73b.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/unnamed.jpg') }}" alt="Yashoda Logo">
+            </div>
+            <h1>Yashoda Hospitals</h1>
+        </div>
+    </header>
+    <div class="box2">
+        <img class="image" src="{{ url_for('static', filename='images/heart1.jpg') }}" alt="Heart">
+        <p class="text">Cardiac Risk Estimator</p>
+    </div>
+    <div class="note">
+        <p1>NOTE:</p1>
+        <p2 class="autotype"></p2>
+    </div>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed(".autotype", {
+            strings: ["This is only an estimation", "Please contact the Doctor in case of any emergency!"],
+            typeSpeed: 40,
+            backSpeed: 20,
+            loop: true
+        });
+    </script>
+    <div class="main">
+        <p>*This <span>ASCVD</span> risk estimator is for people of age <span2>19-80</span2> only</p>
+    </div>
+
+    <form action="/predict" method="post">
+        <section class="form-section">
+                <div class="form-group">
+                    <label for="age"><i class="fa-solid fa-person"></i> AGE (19-80) *</label>
+                    <input type="number" id="age" name="age" min="19" max="79" placeholder="Enter Your Age here" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-venus-mars"></i> GENDER *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="sex" value="1" required>
+                        <label for="male">MALE</label>
+                        <input type="radio" id="female" name="sex" value="0" required>
+                        <label for="female">FEMALE</label>
+                    </div>
+                </div>            
+                <div class="form-group">
+                    <label for="restingbp"><i class="fa-solid fa-stethoscope"></i> RESTING BLOOD PRESSURE (mmHg) *</label>
+                    <input type="number" id="trestbps" name="trestbps" min="50" max="200" placeholder="Enter Your Value here" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-heartbeat"></i> Type of Chest pain *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="chestpain_1" name="cp" value="1" required>
+                        <label for="chestpain_1">1</label>
+                        <input type="radio" id="chestpain_2" name="cp" value="2" required>
+                        <label for="chestpain_2">2</label>
+                        <input type="radio" id="chestpain_3" name="cp" value="3" required>
+                        <label for="chestpain_3">3</label>
+                        <input type="radio" id="chestpain_4" name="cp" value="4" required>
+                        <label for="chestpain_4">4</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cholesterol"><i class="fa-solid fa-hospital"></i> SERUM CHOLESTROL (mg/dL) *</label>
+                    <input type="number" id="chol" name="chol" min="100" max="500" placeholder="Enter Your Value here" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-prescription-bottle-medical"></i> Is Fasting Blood Sugar > 120 mg/dL *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="bloodsugar_1" name="fbs" value="1" required>
+                        <label for="bloodsugar_1">YES</label>
+                        <input type="radio" id="bloodsugar_0" name="fbs" value="0" required>
+                        <label for="bloodsugar_0">NO</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-heart-rate"></i> Resting ECG (0-2) *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="ecg_0" name="restecg" value="0" required>
+                        <label for="ecg_0">0</label>
+                        <input type="radio" id="ecg_1" name="restecg" value="1" required>
+                        <label for="ecg_1">1</label>
+                        <input type="radio" id="ecg_2" name="restecg" value="2" required>
+                        <label for="ecg_2">2</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="maxheartrate"><i class="fa-solid fa-heart"></i> Maximum Heartrate (BPM) *</label>
+                    <input type="number" id="maxheartrate" name="thalach" min="50" max="200" placeholder="Enter Your Value here" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-running"></i> Exercise Induced Angina (Yes or No) *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="angina_yes" name="exang" value="1" required>
+                        <label for="angina_yes">YES</label>
+                        <input type="radio" id="angina_no" name="exang" value="0" required>
+                        <label for="angina_no">NO</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="oldpeak"><i class="fa-solid fa-chart-line"></i> ST DEPRESSION INDUCED BY EXERCISE RELATIVE TO REST *</label>
+                    <input type="number" id="oldpeak" name="oldpeak" step="0.01" placeholder="Enter Your Value here" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-mountain"></i> SLOPE OF PEAK EXERCISE ST SEGMENT (1-3) *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="slope_1" name="slope" value="1" required>
+                        <label for="slope_1">1</label>
+                        <input type="radio" id="slope_2" name="slope" value="2" required>
+                        <label for="slope_2">2</label>
+                        <input type="radio" id="slope_3" name="slope" value="3" required>
+                        <label for="slope_3">3</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-vial"></i> NUMBER OF MAJOR VESSELS (0-3) COLORED BY FLUOROSCOPY *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="vessels_0" name="ca" value="0" required>
+                        <label for="vessels_0">0</label>
+                        <input type="radio" id="vessels_1" name="ca" value="1" required>
+                        <label for="vessels_1">1</label>
+                        <input type="radio" id="vessels_2" name="ca" value="2" required>
+                        <label for="vessels_2">2</label>
+                        <input type="radio" id="vessels_3" name="ca" value="3" required>
+                        <label for="vessels_3">3</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-dna"></i> THALASSEMIA *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="tlsm_3" name="thal" value="3" required>
+                        <label for="tlsm_3">Normal</label>
+                        <input type="radio" id="tlsm_6" name="thal" value="6" required>
+                        <label for="tlsm_6">Fixed Defect</label>
+                        <input type="radio" id="tlsm_7" name="thal" value="7" required>
+                        <label for="tlsm_7">Reversible Defect</label>
+                    </div>
+                </div>
+        </section>
+        <div class="predict">
+            <button type="submit" id="submitBtn" class="submit">SUBMIT</button>
+            <button type="reset" id="resetBtn" class="reset">RESET</button>
+        </div>
+        <div class="info">
+            For more information about the inputs and calculations used in this app, see “Terms and Concepts” in the Resources tab below.<br>
+            **10-year risk for ASCVD is categorized as:<br>
+            Low-risk (&lt; 5%)<br>
+            Borderline risk (5% to 7.4%)<br>
+            Intermediate risk (7.5% to 19.9%)<br>
+            High-risk (&ge; 20%)<br>
+        </div>
+    </form>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-sectionabout">
+                    <h1>About Us</h1>
+                    <p>Yashoda Hospitals is a leading healthcare provider in India. For over three decades, we have been providing quality healthcare for the people in their diverse medical needs. Our work is centered around our patients, which is why we are always looking to improve our services and medical expertise. Our team is made up of doctors, nurses, and other healthcare professionals who have years of experience in their fields. We are proud to be a part of the Yashoda Group, which is one of the largest healthcare providers in India.</p>
+                </div>
+                <div class="footer-section links">
+                    <h1>Quick Links</h1>
+                    <ul>
+                        <a href="#"><li>Home</li></a>
+                        <a href="#"><li>Services</li></a>
+                        <a href="#"><li>Doctors</li></a>
+                        <a href="#"><li>Testimonials</li></a>
+                        <a href="#"><li>Contact</li></a>
+                    </ul>
+                </div>
+                <div class="footer-section contact-form">
+                    <h1>Contact Us</h1>
+                    <form action="index.html" method="post">
+                        <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
+                        <textarea name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
+                        <button type="submit" class="btn btn-big contact-btn">
+                            <i class="fas fa-envelope"></i>
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; yashodahospitals.com | Designed by Yashoda Hospitals
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
