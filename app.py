@@ -20,6 +20,9 @@ except FileNotFoundError as e:
 @app.route('/')
 def home():
     return render_template('index.html')
+@app.route('/resources')
+def resources():
+    return render_template('resources.html')
 
 # Handle form submission and prediction
 @app.route('/predict', methods=['POST'])
