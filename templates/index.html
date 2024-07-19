@@ -50,7 +50,7 @@
         <p>*This <span>ASCVD</span> risk estimator is for people of age <span2>19-80</span2> only</p>
     </div>
 
-    <form action="/predict" method="post">
+   <form action="/predict" method="post">
         <section class="form-section">
                 <div class="form-group">
                     <label for="age"><i class="fa-solid fa-person"></i> AGE (19-80) *</label>
@@ -73,13 +73,13 @@
                     <label><i class="fa-solid fa-heartbeat"></i> Type of Chest pain *</label>
                     <div class="radio-group">
                         <input type="radio" id="chestpain_1" name="cp" value="1" required>
-                        <label for="chestpain_1">1</label>
+                        <label for="chestpain_1">Typical Angina</label>
                         <input type="radio" id="chestpain_2" name="cp" value="2" required>
-                        <label for="chestpain_2">2</label>
+                        <label for="chestpain_2">Atypical Angina</label>
                         <input type="radio" id="chestpain_3" name="cp" value="3" required>
-                        <label for="chestpain_3">3</label>
+                        <label for="chestpain_3">Non Anginal Pain</label>
                         <input type="radio" id="chestpain_4" name="cp" value="4" required>
-                        <label for="chestpain_4">4</label>
+                        <label for="chestpain_4">Asymptotic</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -99,11 +99,11 @@
                     <label><i class="fa-solid fa-heart-rate"></i> Resting ECG (0-2) *</label>
                     <div class="radio-group">
                         <input type="radio" id="ecg_0" name="restecg" value="0" required>
-                        <label for="ecg_0">0</label>
+                        <label for="ecg_0">Normal</label>
                         <input type="radio" id="ecg_1" name="restecg" value="1" required>
-                        <label for="ecg_1">1</label>
+                        <label for="ecg_1">ST-T Wave Abnormality</label>
                         <input type="radio" id="ecg_2" name="restecg" value="2" required>
-                        <label for="ecg_2">2</label>
+                        <label for="ecg_2">Left Ventricular Hyperthrophy</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -128,11 +128,11 @@
                     <label><i class="fa-solid fa-mountain"></i> SLOPE OF PEAK EXERCISE ST SEGMENT (1-3) *</label>
                     <div class="radio-group">
                         <input type="radio" id="slope_1" name="slope" value="1" required>
-                        <label for="slope_1">1</label>
+                        <label for="slope_1">Upsloping</label>
                         <input type="radio" id="slope_2" name="slope" value="2" required>
-                        <label for="slope_2">2</label>
+                        <label for="slope_2">Flat</label>
                         <input type="radio" id="slope_3" name="slope" value="3" required>
-                        <label for="slope_3">3</label>
+                        <label for="slope_3">Downsloping</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -167,10 +167,24 @@
         <div class="info">
             For more information about the inputs and calculations used in this app, see “Terms and Concepts” in the Resources tab below.<br>
             **10-year risk for ASCVD is categorized as:<br>
-            Low-risk (&lt; 5%)<br>
-            Borderline risk (5% to 7.4%)<br>
-            Intermediate risk (7.5% to 19.9%)<br>
-            High-risk (&ge; 20%)<br>
+            Low-risk<br>
+            Borderline risk<br>
+            Intermediate risk <br>
+            High-risk<br>
+            <h4> **Angina  is pain in the chest that comes on with exercise, stress, or other things that make the heart work harder.<br>
+            ***Peak exercise ST segment: A treadmill ECG stress test is considered abnormal when there is a horizontal or down-sloping ST-segment depression. Exercise ECGs with up-sloping ST-segment depressions are typically reported as an ‘equivocal’ test.<br>
+            Peak exercise ST segment :<br>
+            <span1>1 = upsloping<br>2 = flat <br>
+            3 = downsloping</span1><br><br>
+            Resting ECG : displays resting electrocardiographic results<br>
+                <span2>0 = normal<br>
+                1 = having ST-T wave abnormality<br>
+                2 = left ventricular hyperthrophy</span2><br><br>
+                Chest-pain type: displays the type of chest-pain experienced by the individual using the following format :<br>
+                <span3>1 = typical angina<br>
+                2 = atypical angina<br>
+                3 = non-anginal pain<br>
+                4 = asymptotic</span3></h4>
         </div>
     </form>
 
