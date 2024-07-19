@@ -20,7 +20,7 @@ except FileNotFoundError as e:
 @app.route('/')
 def home():
     return render_template('index.html')
-@app.route('/resources')
+@app.route('/resources.html')
 def resources():
     return render_template('resources.html')
 
