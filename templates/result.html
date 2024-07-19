@@ -6,23 +6,42 @@
     <title>Heart Disease Risk Prediction Result</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #e6effd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .result-container {
-            border: 1px solid #ccc;
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
+            background-color: #d6e6f3;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e3e6e8;
         }
         h1 {
-            color: #333;
+            color: #0e0f0e;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
         .risk-percentage {
-            font-size: 24px;
-            color: #1a73e8;
-            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ff3939;
+            margin: 20px 0;
+        }
+        .risk-percentage span {
+            font-weight: bold;
+        }
+        p {
+            font-size: 1em;
+            color: #666;
         }
     </style>
 </head>
@@ -31,9 +50,9 @@
         <h1>Heart Disease Risk Prediction</h1>
         <div class="risk-percentage">
             {% if risk_percentage is defined %}
-                Risk Percentage: {{ '%.2f' % risk_percentage }}%  <!-- Format the number directly -->
+                Risk Percentage: <span>{{ '%.2f' % risk_percentage }}%</span>
             {% else %}
-                Risk Percentage: Not Available
+                Risk Percentage: <span>Not Available</span>
             {% endif %}
         </div>
         <p>Thank you for using our prediction service!</p>
