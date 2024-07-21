@@ -9,22 +9,7 @@ Risk Percentage Calculation: Converts model output into a user-friendly risk per
 Error Handling: Provides meaningful feedback to users in case of errors during prediction.
 JSON Response: Returns risk prediction in JSON format for frontend consumption.
 
-PROJECT STRUCTURE 
 
-├── app.py
-├── templates
-│   ├── index.html
-│   ├── error.html
-├── static
-│   ├── css
-│   │   └── style.css
-│   └── images
-│       └── logo.png
-├── models
-│   ├── best_heart_disease_gb_model.pkl
-│   ├── scaler.pkl
-│   └── feature_names.pkl
-├── README.md
 
 ## Prerequisites
 
